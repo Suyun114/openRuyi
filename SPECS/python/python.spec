@@ -148,6 +148,7 @@ BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig
 BuildRequires:  python-rpm-macros
 BuildRequires:  pkgconfig(sqlite3)
+BuildRequires:  pkgconfig(tk)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(liblzma)
 BuildRequires:  pkgconfig(readline)
@@ -682,6 +683,7 @@ EXCLUDES="-x test_ensurepip -x test_ctypes -x test_tools"
 %{pylibdir}/idlelib
 
 %files -n %{pkgname}-tkinter
+%{dynload_dir}/_tkinter.*.so
 %{pylibdir}/tkinter
 %{pylibdir}/turtle.py
 %{pylibdir}/__pycache__/turtle*%{bytecode_suffixes}
