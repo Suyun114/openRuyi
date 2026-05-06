@@ -6,18 +6,18 @@
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
-%global major_version 5.4
+%global major_version 5.5
 
 Name:           lua
-Version:        5.4.8
+Version:        5.5.0
 Release:        %autorelease
 Summary:        Powerful, efficient, lightweight, embeddable scripting language
 License:        MIT
 URL:            https://www.lua.org/
 VCS:            git:https://github.com/lua/lua.git
-#!RemoteAsset:  sha256:4f18ddae154e793e46eeab727c59ef1c0c0c2b744e7b94219710d76f530629ae
+#!RemoteAsset:  sha256:57ccc32bbbd005cab75bcc52444052535af691789dba2b9016d5c50640d68b3d
 Source0:        https://www.lua.org/ftp/lua-%{version}.tar.gz
-#!RemoteAsset:  sha256:9581d5a7c39ffbf29b8ccde2709083c380f7bbddbd968dcb15712d2f2e33f4e5
+#!RemoteAsset:  sha256:5e47bbfad7db2965d69580e918ee64edeb8d8d32de404b8dae9ce5c6d76a1472
 Source1:        https://www.lua.org/tests/lua-%{version}-tests.tar.gz
 Source2:        luaconf.h
 Source3:        mit.txt
@@ -67,8 +67,10 @@ mv src/luaconf.h src/luaconf.h.template.in
 %patch 1 -p1 -z .idsize
 %patch 2 -p1 -z .configure-linux
 %patch 3 -p1 -z .configure-compat-all
-# Put proper version in configure.ac, patch0 hardcodes 5.3.0
+# Put proper version in configure.ac, patches hardcodes old versions
 sed -i 's|5.3.0|%{version}|g' configure.ac
+sed -i 's|5.4.0|%{version}|g' configure.ac
+sed -i 's|AC_SUBST(\[MAJOR_VERSION\], \[5.4\])|AC_SUBST([MAJOR_VERSION], [%{major_version}])|g' configure.ac
 autoreconf -ifv
 cp %{SOURCE3} .
 
@@ -106,7 +108,7 @@ rm -rf %{buildroot}%{_libdir}/*.a
 
 %files help
 %defattr(-,root,root)
-%doc README doc/*.html doc/*.css doc/*.gif doc/*.png
+%doc README doc/*.html doc/*.css doc/*.png
 %{_mandir}/man1/lua*.1*
 
 %changelog
