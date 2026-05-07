@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
+# SPDX-FileContributor: Suyun <ziyu.oerv@isrc.iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -14,20 +15,18 @@
 %bcond libsecret 0
 
 Name:           git
-Version:        2.51.0
+Version:        2.54.0
 Release:        %autorelease
 Summary:        Fast Version Control System
 License:        BSD-3-Clause AND GPL-2.0-only AND GPL-2.0-or-later AND LGPL-2.1-or-later AND MIT
 URL:            https://git-scm.com/
 VCS:            git:https://github.com/git/git
-#!RemoteAsset:  sha256:60a7c2251cc2e588d5cd87bae567260617c6de0c22dca9cdbfc4c7d2b8990b62
+#!RemoteAsset:  sha256:f689162364c10de79ef89aa8dbf48731eb057e34edbbd20aca510ce0154681a3
 Source0:        https://www.kernel.org/pub/software/scm/git/%{name}-%{version}.tar.xz
-#!RemoteAsset:  sha256:e4387e847e9113bc1764b1ad1bfd915b3e97c0f75faf91fb287c6ed0df0bb148
-Source1:        https://www.kernel.org/pub/software/scm/git/%{name}-%{version}.tar.sign
-Source2:        gitweb-httpd.conf
-Source3:        gitweb.conf.in
-Source4:        git@.service.in
-Source5:        git.socket
+Source1:        gitweb-httpd.conf
+Source2:        gitweb.conf.in
+Source3:        git@.service.in
+Source4:        git.socket
 BuildSystem:    autotools
 
 # CVE-2024-52005: https://github.com/gitgitgadget/git/pull/1853
@@ -293,9 +292,9 @@ install -pm 755 contrib/credential/netrc/git-credential-netrc \
 %make_install -C contrib/subtree
 
 mkdir -p %{buildroot}%{_sysconfdir}/httpd/conf.d
-install -pm 0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/httpd/conf.d/%{gitweb_httpd_conf}
+install -pm 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/httpd/conf.d/%{gitweb_httpd_conf}
 sed "s|@PROJECTROOT@|%{_localstatedir}/lib/git|g" \
-    %{SOURCE3} > %{buildroot}%{_sysconfdir}/gitweb.conf
+    %{SOURCE2} > %{buildroot}%{_sysconfdir}/gitweb.conf
 
 # install contrib/diff-highlight
 install -Dpm 0755 contrib/diff-highlight/diff-highlight \
@@ -308,11 +307,11 @@ find %{buildroot} Documentation \( -type f -o -type l \) \
 %endif
 
 mkdir -p %{buildroot}%{_localstatedir}/lib/git
-install -Dp -m 0644 %{SOURCE5} %{buildroot}%{_unitdir}/git.socket
+install -Dp -m 0644 %{SOURCE4} %{buildroot}%{_unitdir}/git.socket
 perl -p \
     -e "s|\@GITEXECDIR\@|%{_libexecdir}/git|g;" \
     -e "s|\@BASE_PATH\@|%{_localstatedir}/lib/git|g;" \
-    %{SOURCE4} > %{buildroot}%{_unitdir}/git@.service
+    %{SOURCE3} > %{buildroot}%{_unitdir}/git@.service
 
 # Remove unneeded git-remote-testsvn so git-svn can be noarch
 rm -f %{buildroot}%{_libexecdir}/git/git-remote-testsvn
