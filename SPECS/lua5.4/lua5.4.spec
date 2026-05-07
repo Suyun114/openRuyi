@@ -60,7 +60,7 @@ functional programming, data-driven programming, and data description.
 %prep
 # we need to rename the file within the srcdir before patching,
 # autosetup is not usable
-%setup -q -a 1
+%setup -q -a 1 -n lua-%{version}
 mv src/luaconf.h src/luaconf.h.template.in
 %patch 0 -p1 -E -z .autoxxx
 %patch 1 -p1 -z .idsize
@@ -86,6 +86,7 @@ rm -rf %{buildroot}%{_libdir}/*.a
 mv %{buildroot}%{_bindir}/lua %{buildroot}%{_bindir}/lua%{major_version}
 mv %{buildroot}%{_bindir}/luac %{buildroot}%{_bindir}/luac%{major_version}
 mv %{buildroot}%{_includedir}/lua.h %{buildroot}%{_includedir}/%{name}/
+mv %{buildroot}%{_includedir}/lua.hpp %{buildroot}%{_includedir}/%{name}/
 mv %{buildroot}%{_includedir}/lualib.h %{buildroot}%{_includedir}/%{name}/
 mv %{buildroot}%{_includedir}/lauxlib.h %{buildroot}%{_includedir}/%{name}/
 mv %{buildroot}%{_includedir}/luaconf.h %{buildroot}%{_includedir}/%{name}/
