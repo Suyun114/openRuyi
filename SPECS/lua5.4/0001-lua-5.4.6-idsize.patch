@@ -1,0 +1,13 @@
+diff --git a/src/luaconf.h.template.in b/src/luaconf.h.template.in
+index 1e32333..601d10e 100644
+--- a/src/luaconf.h.template.in
++++ b/src/luaconf.h.template.in
+@@ -762,7 +762,7 @@
+ ** of a function in debug information.
+ ** CHANGE it if you want a different size.
+ */
+-#define LUA_IDSIZE	60
++#define LUA_IDSIZE	512
+ 
+ 
+ /*
