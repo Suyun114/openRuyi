@@ -7,14 +7,14 @@
 # SPDX-License-Identifier: MulanPSL-2.0
 
 Name:           util-linux
-Version:        2.41.3
+Version:        2.42.1
 Release:        %autorelease
 Summary:        A collection of basic system utilities
 License:        GPL-2.0-or-later and others
 URL:            https://www.kernel.org/pub/linux/utils/util-linux/
 VCS:            git:https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git
-#!RemoteAsset:  sha256:3330d873f0fceb5560b89a7dc14e4f3288bbd880e96903ed9b50ec2b5799e58b
-Source0:        https://www.kernel.org/pub/linux/utils/util-linux/v2.41/util-linux-%{version}.tar.xz
+#!RemoteAsset:  sha256:82e9158eb12a9b0b569d84e1687fed9dd18fe89ccd8ef5ac3427218a7c0d7f7f
+Source0:        https://www.kernel.org/pub/linux/utils/util-linux/v2.42/util-linux-%{version}.tar.xz
 # These files define the default behavior for openRuyi.
 Source10:       login.pam
 Source11:       su-l.pam
@@ -163,10 +163,6 @@ Requires:       pkgconfig(zlib)
 %description    devel
 This package contains all header files, static libraries, and development
 symlinks for the libraries included in util-linux.
-
-%env -p
-# Regenerate autotools files in case patches touched them.
-autoreconf -fiv
 
 %install -p
 %if "%{_sbindir}" == "%{_bindir}"
