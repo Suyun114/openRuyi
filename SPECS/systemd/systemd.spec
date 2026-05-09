@@ -1,7 +1,8 @@
-# SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
-# SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
+# SPDX-FileCopyrightText: (C) 2025, 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
+# SPDX-FileCopyrightText: (C) 2025, 2026 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
+# SPDX-FileContributor: Suyun <ziyu.oerv@isrc.iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -610,8 +611,8 @@ fi
                         sleep.target
                         suspend-then-hibernate.target
                         suspend.target
-                        system-systemd\x2dcryptsetup.slice
-                        system-systemd\x2dveritysetup.slice
+                        system-systemd\\x2dcryptsetup.slice
+                        system-systemd\\x2dveritysetup.slice
                         systemd-backlight@.service
                         systemd-binfmt.service
                         systemd-bless-boot.service
