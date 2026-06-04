@@ -19,15 +19,15 @@
 %{?python3_sitearch: %global python3_sitearch %{python3_sitearch}}
 
 Name:           samba
-Version:        4.23.2
+Version:        4.24.3
 Release:        %autorelease
 Summary:        Server and Client software to interoperate with Windows machines
 License:        GPL-3.0-or-later
 URL:            https://www.samba.org
 VCS:            git:https://git.samba.org/samba.git
-#!RemoteAsset:  sha256:2de330647e1486683597e261285d04a9b7514ab5c7da27711736e22c7f2b9c2e
+#!RemoteAsset:  sha256:4a5e0ed1ea192b798c873d9957c50a5767c10c2767cccb00d56ecc427e94f8e9
 Source0:        https://download.samba.org/pub/samba/stable/%{name}-%{version}.tar.gz
-#!RemoteAsset:  sha256:c514f0a0aa41c351e08eb05925e10653546c4f3f582181ba851dd81e470cb439
+#!RemoteAsset:  sha256:5421b6de033eab11294035ac6c962cd1796fc4c1c808f8d157c92474b0a1d136
 Source1:        https://download.samba.org/pub/samba/stable/%{name}-%{version}.tar.asc
 Source2:        samba-systemd.sysusers
 Source3:        samba-winbind-systemd.sysusers
