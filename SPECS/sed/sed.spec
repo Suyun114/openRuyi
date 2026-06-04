@@ -6,19 +6,20 @@
 # SPDX-License-Identifier: MulanPSL-2.0
 
 Name:           sed
-Version:        4.9
+Version:        4.10
 Release:        %autorelease
 Summary:        A Stream-Oriented Non-Interactive Text Editor
 License:        GPL-3.0-or-later
 URL:            https://www.gnu.org/software/sed/
 VCS:            git:https://https.git.savannah.gnu.org/git/sed.git
-#!RemoteAsset
+#!RemoteAsset:  sha256:b8e72182b2ec96a3574e2998c47b7aaa64cc20ce000d8e9ac313cc07cecf28c7
 Source0:        https://ftpmirror.gnu.org/gnu/sed/%{name}-%{version}.tar.xz
-#!RemoteAsset
+#!RemoteAsset:  sha256:b43d0dae9cba8cc2adb268cc37e974d5811475ffd569d66c8963cfd5ae2e224e
 Source1:        https://ftpmirror.gnu.org/gnu/sed/%{name}-%{version}.tar.xz.sig
 BuildSystem:    autotools
 
 BuildOption(conf):  --without-included-regex
+BuildOption(check):  -e backref-anchor.sh
 
 BuildRequires:  pkgconfig(libacl)
 BuildRequires:  pkgconfig(libselinux)
@@ -42,4 +43,4 @@ occurrences of a string within a file.
 %{_infodir}/sed.info*%{ext_info}
 
 %changelog
-%{?autochangelog}
+%autochangelog
