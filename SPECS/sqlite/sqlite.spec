@@ -8,27 +8,26 @@
 %global _test_target test
 
 # These are for SQLite sources
-%define year 2025
-%define download_version 3500400
+%define year 2026
+%define download_version 3530200
 # Doc version might be different
-%define doc_version 3500400
+%define doc_version 3530200
 
 Name:           sqlite
-Version:        3.50.4
+Version:        3.53.2
 Release:        %autorelease
 Summary:        Library that implements an embeddable SQL database engine
 License:        GPL-3.0-or-later
 URL:            https://www.sqlite.org/
 VCS:            git:https://github.com/sqlite/sqlite.git
-#!RemoteAsset:  sha256:b7b4dc060f36053902fb65b344bbbed592e64b2291a26ac06fe77eec097850e9
+#!RemoteAsset:  sha256:cafff764c03f6d720968f746e2f47a986bbf12bf4c18904f1eb131c0b0b592d3
 Source0:        http://www.sqlite.org/%{year}/sqlite-src-%{download_version}.zip
-#!RemoteAsset:  sha256:f8a03cf461500310c7a785c9d6f86121ac9465601982cdcac6de0c5987dbfc2f
+#!RemoteAsset:  sha256:30c5488926e72a0b958d64377c91c975a35a8f16d285cbb83cfad31f4af71c6d
 Source1:        http://www.sqlite.org/%{year}/sqlite-doc-%{doc_version}.zip
 BuildSystem:    autotools
 
 # Support system-wide template (located at /usr/share/lemon/lempar.c) in lemon.
-Patch0:         0001-sqlite-lemon-system-template.patch
-Patch1:         0002-add-missing-quote.patch
+Patch2000:      2000-sqlite-lemon-system-template.patch
 
 BuildOption(prep):  -a 1
 
