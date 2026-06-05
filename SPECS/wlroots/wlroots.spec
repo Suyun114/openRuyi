@@ -8,12 +8,12 @@
 %bcond xwayland 0
 
 Name:           wlroots
-Version:        0.19.3
+Version:        0.20.1
 Release:        %autorelease
 Summary:        A modular Wayland compositor library
 License:        MIT
 URL:            https://gitlab.freedesktop.org/wlroots/wlroots
-#!RemoteAsset:  sha256:a6ff89b64ea15e424d1b0db4a22145fccf5ec2ff2e7b8af0fa35e2ac8975986f
+#!RemoteAsset:  sha256:e9e699a06492121153ce3a3448b0aa610f3285130754b85fbb58736c931fffec
 Source0:        https://gitlab.freedesktop.org/wlroots/wlroots/-/archive/%{version}/wlroots-%{version}.tar.gz
 BuildSystem:    meson
 
@@ -62,7 +62,7 @@ BuildRequires:  pkgconfig(xcb-ewmh)
 BuildRequires:  pkgconfig(xcb-icccm)
 BuildRequires:  pkgconfig(xcb-renderutil)
 %endif
-Provides:       wlroots-0.19
+Provides:       wlroots-0.20
 
 %description
 wlroots is a modular Wayland compositor library. It implements a huge number of
@@ -83,7 +83,7 @@ Development files for %{name}.
 
 %files devel
 %{_includedir}/wlroots-*/
-%{_libdir}/pkgconfig/wlroots-0.19.pc
+%{_libdir}/pkgconfig/wlroots-0.20.pc
 
 %changelog
 %autochangelog
