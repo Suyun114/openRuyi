@@ -12,13 +12,13 @@
 %global _test_target test
 
 Name:           php
-Version:        8.5.2
+Version:        8.5.7
 Release:        %autorelease
 Summary:        The PHP Interpreter
 License:        PHP-3.01
 URL:            https://www.php.net
 VCS:            git:https://github.com/php/php-src
-#!RemoteAsset
+#!RemoteAsset:  sha256:e5eba93fd6dd3241d0e61e932eb99a3783b40568553fb0e511b660ecd863a049
 Source0:        https://www.php.net/distributions/%{name}-%{version}.tar.gz
 BuildSystem:    autotools
 
@@ -74,4 +74,4 @@ rm -r %{buildroot}%{_libdir}/build
 %{_includedir}/php/*
 
 %changelog
-%{?autochangelog}
+%autochangelog
