@@ -1,8 +1,6 @@
-diff --git a/misc/gen-pkgconfig.in b/misc/gen-pkgconfig.in
-index a45dd54..8527305 100644
---- a/misc/gen-pkgconfig.in
-+++ b/misc/gen-pkgconfig.in
-@@ -83,7 +83,7 @@ if [ "$includedir" != "/usr/include" ]; then
+--- ncurses-6.6/misc/gen-pkgconfig.in	2024-09-29 04:21:23.000000000 +0800
++++ ncurses-6.6-patched/misc/gen-pkgconfig.in	2026-06-09 10:03:07.181651300 +0800
+@@ -83,7 +83,7 @@
  fi
  
  lib_flags=
@@ -11,11 +9,9 @@ index a45dd54..8527305 100644
  do
  	case $opt in
  	-l*) # LIBS is handled specially below
-diff --git a/misc/ncurses-config.in b/misc/ncurses-config.in
-index 7b02ac2..b64379f 100644
---- a/misc/ncurses-config.in
-+++ b/misc/ncurses-config.in
-@@ -41,7 +41,6 @@ exec_prefix="@exec_prefix@"
+--- ncurses-6.6/misc/ncurses-config.in	2025-11-23 03:19:28.000000000 +0800
++++ ncurses-6.6-patched/misc/ncurses-config.in	2026-06-09 10:03:07.264978200 +0800
+@@ -41,7 +41,6 @@
  
  bindir="@bindir@"
  includedir="@includedir@"
@@ -23,7 +19,7 @@ index 7b02ac2..b64379f 100644
  datarootdir="@datarootdir@"
  datadir="@datadir@"
  mandir="@mandir@"
-@@ -101,7 +100,7 @@ fi
+@@ -110,7 +109,7 @@
  # There is no portable way to find the list of standard library directories.
  # Require a POSIX shell anyway, to keep this simple.
  lib_flags=
@@ -32,15 +28,15 @@ index 7b02ac2..b64379f 100644
  do
  	case $opt in
  	-specs*) # ignore linker specs-files which were used to build library
-@@ -117,13 +116,13 @@ do
+@@ -129,13 +128,13 @@
  		lib_check=`echo "x$opt" | sed -e 's/^.-L//'`
  		[ -d "$lib_check" ] || continue
  		case "$lib_check" in
 -		@LD_SEARCHPATH@) # skip standard libdir
-+		////) # skip standard libdir (disabled for multilib)
++		////) # skip standard libdir
  			if [ "$lib_check" = "$libdir" ]
  			then
- 				lib_first=yes
+ 				lib_first=no
  				IFS_save="$IFS"
  				IFS='|'
 -				LIBDIRS="@LD_SEARCHPATH@"
@@ -48,13 +44,3 @@ index 7b02ac2..b64379f 100644
  				for lib_check in $LIBDIRS
  				do
  					if [ -d "$lib_check" ]
-@@ -271,7 +270,6 @@ ENDECHO
- 		echo "$INCS"
- 		;;
- 	--libdir)
--		echo "${libdir}"
- 		;;
- 	--mandir)
- 		echo "${mandir}"
--- 
-2.33.0

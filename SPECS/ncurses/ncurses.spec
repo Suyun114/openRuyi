@@ -8,24 +8,22 @@
 # SPDX-License-Identifier: MulanPSL-2.0
 
 Name:           ncurses
-Version:        6.5
+Version:        6.6
 Release:        %autorelease
 Summary:        Terminal control library
 License:        MIT
 URL:            https://invisible-island.net/ncurses/ncurses.html
 VCS:            git:git://ncurses.scripts.mit.edu/ncurses.git
-#!RemoteAsset:  sha256:136d91bc269a9a5785e5f9e980bc76ab57428f604ce3e5a5a90cebc767971cc6
+#!RemoteAsset:  sha256:355b4cbbed880b0381a04c46617b7656e362585d52e9cf84a67e2009b749ff11
 Source:         https://invisible-mirror.net/archives/ncurses/ncurses-%{version}.tar.gz
 BuildSystem:    autotools
 
 # Patch for removing hardcoded path
 Patch0:         0001-ncurses-config.patch
-# Patch for cleaning up and simplying the linking process
+# Patch for fixing hashmap test compilation (missing -DTRACE)
 Patch1:         0002-ncurses-libs.patch
 # Patch for adding terminal definition for rxvt-unicode
 Patch2:         0003-ncurses-urxvt.patch
-# Patch for fixing backspace key configuration in rxvt and screen terminals
-Patch3:         0004-ncurses-kbs.patch
 
 BuildRequires:  make
 BuildRequires:  gcc
@@ -60,7 +58,6 @@ export CFLAGS="%{build_cflags} -std=gnu17"
     --enable-hard-tabs \
     --enable-overwrite \
     --enable-pc-files \
-    --with-versioned-syms=yes \
     --enable-xmc-glitch \
     --disable-wattr-macros \
     --disable-root-environ \
@@ -70,7 +67,7 @@ export CFLAGS="%{build_cflags} -std=gnu17"
     --with-shared \
     --with-terminfo-dirs=%{_sysconfdir}/terminfo:%{_datadir}/terminfo \
     --with-termlib=tinfo \
-    --with-ticlib=tic \
+    \
     --with-xterm-kbs=DEL \
     --without-ada
 
@@ -92,6 +89,8 @@ xz NEWS
 %{_datadir}/tabset
 %dir %{_datadir}/terminfo
 %{_datadir}/terminfo/*
+%dir %{_libdir}/terminfo
+%{_libdir}/terminfo/*
 %{_libdir}/lib*.so.*
 %{_mandir}/man1/[cirt]*
 %{_mandir}/man5/*
