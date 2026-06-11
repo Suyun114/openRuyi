@@ -65,3 +65,6 @@
 %cmake@@CMAKE_MAJOR_VERSION@@_install %cmake_install
 %ctest@@CMAKE_MAJOR_VERSION@@(:-:h:j:u:v:A:C:D:E:F:H:I:L:M:N:O:Q:R:S:T:U:V:) \
   %ctest %{**}
+
+%cmake_buildrequires \
+  %{__python3} %{_rpmconfigdir}/openruyi/cmake_buildrequires.py

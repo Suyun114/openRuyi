@@ -30,6 +30,7 @@ Source0:        https://www.cmake.org/files/v4.3/cmake-%{version}.tar.gz
 Source1:        macros.cmake
 Source2:        macros.buildsystem.cmake
 Source3:        cmake.attr
+Source4:        cmake_buildrequires.py
 BuildSystem:    autotools
 
 BuildOption(conf):  --no-system-libs
@@ -114,6 +115,7 @@ sed -i -e "s|@@CMAKE_VERSION@@|%{version}|" -e "s|@@CMAKE_MAJOR_VERSION@@|4|" %{
 install -p -m0644 -D %{SOURCE2} %{buildroot}%{_rpmmacrodir}/macros.buildsystem.cmake
 
 install -p -m0644 -D %{SOURCE3} %{buildroot}%{_fileattrsdir}/cmake.attr
+install -p -m0755 -D %{SOURCE4} %{buildroot}%{_rpmconfigdir}/openruyi/cmake_buildrequires.py
 
 # update cmake rpm macro file timestamp
 touch -r %{SOURCE1} %{buildroot}%{_rpmmacrodir}/macros.cmake
@@ -183,6 +185,7 @@ bin/ctest %{?_smp_mflags} -V -E "$NO_TEST" --output-on-failure
 %{_fileattrsdir}/cmake.attr
 %{_rpmmacrodir}/macros.cmake
 %{_rpmmacrodir}/macros.buildsystem.cmake
+%{_rpmconfigdir}/openruyi/cmake_buildrequires.py
 
 %changelog
 %autochangelog

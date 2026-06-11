@@ -1,5 +1,6 @@
 
 # Example buildsystem for cmake
+%buildsystem_cmake_generate_buildrequires() %cmake_buildrequires %*
 %buildsystem_cmake_conf() %cmake %*
 %buildsystem_cmake_build() %cmake_build %*
 %buildsystem_cmake_install() %cmake_install %*
