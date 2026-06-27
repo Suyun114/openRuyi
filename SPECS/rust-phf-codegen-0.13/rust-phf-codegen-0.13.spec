@@ -14,14 +14,14 @@ Summary:        Rust crate "phf_codegen"
 License:        MIT
 URL:            https://github.com/rust-phf/rust-phf
 #!RemoteAsset:  sha256:49aa7f9d80421bca176ca8dbfebe668cc7a2684708594ec9f3c0db0805d5d6e1
-Source:         https://static.crates.io/crates/phf_codegen/%{full_version}/download#/%{name}-%{version}.tar.gz
+Source:         https://static.crates.io/crates/%{crate_name}/%{full_version}/download#/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 BuildSystem:    rustcrates
 
 BuildRequires:  rust-rpm-macros
 
-Requires:       crate(phf-generator-0.13) >= 0.13.1
-Requires:       crate(phf-shared-0.13) >= 0.13.1
+Requires:       crate(phf-generator-0.13/default) >= 0.13.1
+Requires:       crate(phf-shared-0.13/default) >= 0.13.1
 Provides:       crate(%{pkgname}) = %{version}
 Provides:       crate(%{pkgname}/default) = %{version}
 
